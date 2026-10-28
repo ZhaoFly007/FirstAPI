@@ -1,0 +1,22 @@
+debug: true
+spring:
+  datasource:
+    # 完整的数据库 URL
+    url: jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: ${DB_PWD:ZffZhao007}
+    # 显式指定 MySQL 驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+app:
+  security:
+    # 这里可以改成 MD5 或 BCRYPT
+    password-algorithm: BCRYPT
+  jwt:
+    secret: "ThisIsAVerySecretKeyForJwtSigningMustBeLongEnough!" # 加密盐
+    expiration: 1800000 # Token过期时间，30分钟（毫秒）

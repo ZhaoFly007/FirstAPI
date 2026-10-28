@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+
+dependencies {
+    // Spring Boot Web 核心
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // MyBatis 和 MySQL 驱动
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // 测试依赖
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // ===== 本次任务新增的依赖 =====
+    // JWT 生成与解析库
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // 密码加密工具（包含 BCrypt 算法）
+    implementation 'org.springframework.security:spring-security-crypto:6.2.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
